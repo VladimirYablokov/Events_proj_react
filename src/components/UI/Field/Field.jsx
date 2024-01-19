@@ -1,11 +1,12 @@
 import React from 'react';
 import s from './Field.module.sass'
 
-function Field() {
+function Field({label, ...props}) {
     return (
-        <div className={s.field}>
-
-        </div>
+        <label className={s.field}>
+            <p>{label}</p>
+            <input {...props}/>
+        </label>
     );
 }
 

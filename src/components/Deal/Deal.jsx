@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Deal.module.sass'
 
-function Deal({id, date, description}) {
+function Deal({date, description}) {
     return (
         <div className={s.deal}>
             <h2>{date}</h2>

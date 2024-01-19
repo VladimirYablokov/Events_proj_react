@@ -1,10 +1,11 @@
 import React from 'react';
-import s from './DealContainer.module.sass'
+import {MyContext} from "../../context";
+import {useContext} from "react";
 import Deal from "../Deal";
+import s from './DealContainer.module.sass'
 
-function DealContainer({deals}) {
-
-    // const {deals} = useContext(MyContext)
+function DealContainer() {
+    const deals = useContext(MyContext)
     return (
         <div className={s.container}>
             {deals.map(deal => <Deal key={deal.id}{...deal}/>)}

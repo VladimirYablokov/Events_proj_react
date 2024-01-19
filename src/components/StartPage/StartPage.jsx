@@ -3,6 +3,7 @@ import s from './StartPage.module.sass'
 import Button from "../UI/Button";
 import ModalWindow from "../UI/ModalWindow";
 import DealContainer from "../DealContainer";
+import AddDeal from "../AddDeal";
 
 function StartPage({deals}) {
 
@@ -18,6 +19,8 @@ function StartPage({deals}) {
             {
                 modal &&
                 <ModalWindow closeModal={closeModal}>
+                    <AddDeal/>
+
                     <DealContainer deals={deals}/>
                 </ModalWindow>
             }
