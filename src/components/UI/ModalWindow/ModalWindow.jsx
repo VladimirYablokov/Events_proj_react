@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ModalWindow.module.sass'
 
-function ModalWindow({closeModal}) {
+function ModalWindow({children, closeModal}) {
     return (
         <>
             <div className={s.container}
@@ -9,7 +9,7 @@ function ModalWindow({closeModal}) {
             </div>
             <div className={s.modal}
                  onClick={event => event.stopPropagation()}>
-
+                {children}
             </div>
         </>
     );
