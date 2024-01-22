@@ -5,7 +5,7 @@ import Deal from "../Deal";
 import s from './DealContainer.module.sass'
 
 function DealContainer() {
-    const deals = useContext(MyContext)
+    const {deals} = useContext(MyContext)
     return (
         <div className={s.container}>
             {deals.map(deal => <Deal key={deal.id}{...deal}/>)}
