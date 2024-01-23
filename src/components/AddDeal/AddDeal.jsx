@@ -1,39 +1,23 @@
 import React, {useContext} from 'react';
-import s from './AddDeal.module.sass'
+import {MyContext} from "../../context";
+import s from './AddDeal.module.sass';
 import Field from "../UI/Field";
 import Button from "../UI/Button";
-import {MyContext} from "../../context";
 import ClearButton from "../UI/ClearButton";
 
 function AddDeal() {
-    const {addDeal, clearDeals} = useContext(MyContext)
-
-    const convertDate = (inputDate) => {
-        let date = new Date(inputDate)
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
-        month = month < 10 ? '0' + month : month
-        day = day < 10 ? '0' + day : day
-        return `${day}.${month}.${year}`
-    }
-
-    const getFinishDate = (inputDate) => {
-        let startDate = new Date(inputDate);
-        startDate.setDate(startDate.getDate() + 7);
-        return convertDate(startDate.toISOString().split('T')[0])
-    }
+    const {addDeal, clearDeals, convertDate, getFinishDate} = useContext(MyContext);
 
     const submit = (event) => {
-        const {date, description} = event.target
-        event.preventDefault()
+        const {date, description} = event.target;
+        event.preventDefault();
         if (date.value && description.value) {
             addDeal({
                 id: Date.now(),
                 startDate: convertDate(date.value),
                 finishDate: getFinishDate(date.value),
                 description: description.value
-            })
+            });
         }
     }
 

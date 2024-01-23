@@ -3,31 +3,17 @@ import StartPage from "./components/StartPage";
 import {useEffect, useState} from "react";
 import {MyContext} from "./context";
 
-
 function App() {
-    const [deals, setDeals] = useState([
-        // {
-        //     id: 1,
-        //     startDate: '19.01.2023',
-        //     finishDate: '29.01.2023',
-        //     description: 'это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник '
-        // },
-        // {
-        //     id: 2,
-        //     startDate: '19.01.2024',
-        //     finishDate: '29.01.2024',
-        //     description: 'это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник '
-        // },
-    ]);
+    const [deals, setDeals] = useState([]);
 
     useEffect(() => {
         const deals = JSON.parse(localStorage.getItem('deals')) ?? [];
-        setDeals(()=>deals)
-    },[]);
+        setDeals(() => deals)
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('deals', JSON.stringify(deals))
-    },[deals])
+    }, [deals])
 
     const addDeal = (deal) => {
         setDeals(prev => [...prev, deal])
@@ -35,23 +21,35 @@ function App() {
 
     const closeDeal = (id) => {
         setDeals(prev => {
-            return prev.filter(elem => elem.id !==id)
+            return prev.filter(elem => elem.id !== id)
         })
     }
 
     const clearDeals = () => {
-        console.log(`clear`)
         localStorage.removeItem('deals');
         setDeals([])
     }
 
+    const convertDate = (inputDate) => {
+        let date = new Date(inputDate)
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        month = month < 10 ? '0' + month : month
+        day = day < 10 ? '0' + day : day
+        return `${day}.${month}.${year}`
+    }
+
+    const getFinishDate = (inputDate) => {
+        let startDate = new Date(inputDate);
+        startDate.setDate(startDate.getDate() + 7);
+        return convertDate(startDate.toISOString().split('T')[0])
+    }
 
     return (
-        <div className="App">
-            <MyContext.Provider value={{deals, addDeal, closeDeal, clearDeals}}>
-                <StartPage/>
-            </MyContext.Provider>
-        </div>
+        <MyContext.Provider value={{deals, addDeal, closeDeal, clearDeals, convertDate, getFinishDate}}>
+            <StartPage/>
+        </MyContext.Provider>
     );
 }
 
