@@ -3,9 +3,10 @@ import s from './AddDeal.module.sass'
 import Field from "../UI/Field";
 import Button from "../UI/Button";
 import {MyContext} from "../../context";
+import ClearButton from "../UI/ClearButton";
 
 function AddDeal() {
-    const {addDeal} = useContext(MyContext)
+    const {addDeal, clearDeals} = useContext(MyContext)
 
     const convertDate = (inputDate) => {
         let date = new Date(inputDate)
@@ -23,7 +24,6 @@ function AddDeal() {
         return convertDate(startDate.toISOString().split('T')[0])
     }
 
-
     const submit = (event) => {
         const {date, description} = event.target
         event.preventDefault()
@@ -37,12 +37,23 @@ function AddDeal() {
         }
     }
 
-
     return (
-        <form className={s.addForm} onSubmit={submit}>
-            <Field label={'Число:'} name={'date'} type={'date'}/>
-            <Field label={'Описание:'} name={'description'} type={'textarea'} overflow={'scroll'}/>
-            <Button>Добавить</Button>
+        <form className={s.addForm}
+              onSubmit={submit}>
+            <Field label={'Число:'}
+                   name={'date'}
+                   type={'date'}/>
+            <Field label={'Описание:'}
+                   name={'description'}
+                   type={'textarea'}
+                   overflow={'scroll'}/>
+            <Button>
+                Добавить
+            </Button>
+            <ClearButton type={'button'}
+                         onClick={() => clearDeals()}>
+                Очистить
+            </ClearButton>
         </form>
     );
 }
