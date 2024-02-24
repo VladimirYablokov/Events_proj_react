@@ -5,6 +5,8 @@ import CloseButton from "../UI/CloseButton";
 
 function Deal({id, startDate, finishDate, description}) {
     const {closeDeal, convertDate} = useContext(MyContext);
+    console.log(`${convertDate(new Date())}::${convertDate(new Date(finishDate))}`)
+
 
     let boxShadowColor;
     if (convertDate(new Date()) > finishDate) {

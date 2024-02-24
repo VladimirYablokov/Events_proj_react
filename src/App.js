@@ -5,6 +5,7 @@ import {MyContext} from "./context";
 
 function App() {
     const [deals, setDeals] = useState([]);
+    console.log(deals)
 
     useEffect(() => {
         const deals = JSON.parse(localStorage.getItem('deals')) ?? [];
@@ -41,10 +42,20 @@ function App() {
     }
 
     const getFinishDate = (inputDate) => {
-        let startDate = new Date(inputDate);
+        let startDate = convertDate(inputDate);
         startDate.setDate(startDate.getDate() + 7);
-        return convertDate(startDate.toISOString().split('T')[0])
+        return startDate
     }
+
+    // const convertDate = (inputDate) => {
+    //     return new Date(inputDate);
+    // }
+
+    // const getFinishDate = (inputDate) => {
+    //     const startDate = convertDate(inputDate);
+    //     startDate.setDate(startDate.getDate() + 7);
+    //     return startDate;
+    // }
 
     return (
         <MyContext.Provider value={{deals, addDeal, closeDeal, clearDeals, convertDate, getFinishDate}}>
