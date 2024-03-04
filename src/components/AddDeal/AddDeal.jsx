@@ -14,7 +14,6 @@ function AddDeal() {
         if (date.value && description.value) {
             addDeal({
                 id: Date.now(),
-                date: new Date(),
                 startDate: date.value,
                 finishDate: getFinishDate(date.value),
                 description: description.value
