@@ -5,13 +5,12 @@ import CloseButton from "../UI/CloseButton";
 
 function Deal({id, startDate, finishDate, description}) {
     const {closeDeal, convertDate} = useContext(MyContext);
-    console.log(`${convertDate(new Date())}::${convertDate(new Date(finishDate))}`)
-
+    console.log(`${new Date(Date.now())} : : : ${new Date(finishDate)}`)
 
     let boxShadowColor;
-    if (convertDate(new Date()) > finishDate) {
+    if (new Date() > new Date(finishDate)) {
         boxShadowColor = '0 0 10px red'
-    } else if (convertDate(new Date()) === finishDate) {
+    } else if (new Date() === new Date(finishDate)) {
         boxShadowColor = '0 0 10px gold'
     } else {
         boxShadowColor = '0 0 10px green'
@@ -22,10 +21,10 @@ function Deal({id, startDate, finishDate, description}) {
     return (
         <div className={s.deal} style={style}>
             <h3>
-                <span>Начало:</span> {startDate}
+                <span>Начало:</span> {convertDate(startDate)}
             </h3>
             <h3>
-                <span>Конец:</span> {finishDate}
+                <span>Конец:</span> {convertDate(finishDate)}
             </h3>
             <p>
                 <span>Описание:</span> {description}

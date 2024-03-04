@@ -43,8 +43,9 @@ function App() {
     const getFinishDate = (inputDate) => {
         let startDate = new Date(inputDate);
         startDate.setDate(startDate.getDate() + 7);
-        return convertDate(startDate.toISOString().split('T')[0])
+        return startDate.toISOString().split('T')[0]
     }
+    console.log(deals)
 
     return (
         <MyContext.Provider value={{deals, addDeal, closeDeal, clearDeals, convertDate, getFinishDate}}>

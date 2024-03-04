@@ -6,7 +6,7 @@ import Button from "../UI/Button";
 import ClearButton from "../UI/ClearButton";
 
 function AddDeal() {
-    const {addDeal, clearDeals, convertDate, getFinishDate} = useContext(MyContext);
+    const {addDeal, clearDeals, getFinishDate} = useContext(MyContext);
 
     const submit = (event) => {
         const {date, description} = event.target;
@@ -14,7 +14,7 @@ function AddDeal() {
         if (date.value && description.value) {
             addDeal({
                 id: Date.now(),
-                startDate: convertDate(date.value),
+                startDate: date.value,
                 finishDate: getFinishDate(date.value),
                 description: description.value
             });
