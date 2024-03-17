@@ -27,7 +27,8 @@ function Deal({id, startDate, finishDate, description}) {
                 <span>Конец:</span> {convertDate(finishDate)}
             </h3>
             <p>
-                <span>Описание:</span> {description}
+                <span>Описание: </span>
+                {description}
             </p>
             <CloseButton handler={() => closeDeal(id)}>
                 ❌

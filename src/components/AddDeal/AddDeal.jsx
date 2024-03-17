@@ -29,7 +29,7 @@ function AddDeal() {
                    type={'date'}/>
             <Field label={'Описание:'}
                    name={'description'}
-                   type={'textarea'}
+                   type={'search'}
                    overflow={'scroll'}/>
             <Button>
                 Добавить
